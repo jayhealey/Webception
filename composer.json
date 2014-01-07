@@ -1,0 +1,18 @@
+{
+    "name": "Webception",
+    "description": "Web Interface for running Codeception tests.",
+    "keywords": ["codeception", "webception", "testing", "php", "web interface"],
+    "license": "MIT",
+    "require": {
+        "slim/slim": "2.*",
+        "slim/views": "0.1.*",
+        "twig/twig": "~1.13",
+        "symfony/yaml": "2.5.*@dev",
+        "codeception/codeception": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "App": ""
+        }
+    }
+}

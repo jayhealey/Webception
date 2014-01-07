@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ webception.name|striptags }} | Dashboard</title>
+        <link rel="stylesheet" href="css/foundation.css" type="text/css" />
+        <link rel="stylesheet" href="css/app.css" type="text/css" media="all" />
+        <script src="js/libs/modernizr.js"></script>
+    </head>
+    <body>
+
+    <div class="contain-to-grid">
+        <nav class="top-bar" data-topbar>
+            <section class="top-bar-section">
+                <ul class="left title-area">
+                    <li {% if codeception.site.hasChoices() %}class="has-dropdown"{% endif %}>
+                        {% if codeception.site.ready() %}
+                            <a href="#"><strong>Current Tests:</strong> {{ codeception.site.getName() }}</a>
+                            {% if codeception.site.hasChoices() %}
+                                <ul class="dropdown">
+                                {% for hash, site in codeception.site.getSites() %}
+                                    <li><a href="/?hash={{ hash }}">{{ site.name }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class='button-group radius right'>
+                    <li>
+                    {% if codeception.ready() %}
+                       <a class='button success'>CONFIG <strong>PASSED</strong></a>
+                    {% else %}
+                        <a class='button alert'>CONFIG <strong>FAILED</strong></a>
+                    {% endif %}
+                    </li>
+                    <li>
+                        <a class='' id='button_codeception'></a>
+                    </li>
+                    <li>
+                        <a class='' id='button_logs'></a>
+                    </li>
+                </ul>
+          </section>
+        </nav>
+    </div>
+
+    <div class="row">
+
+        <br><br>
+
+        <div class="large-12 columns">
+            <h1 class="left">
+                {{ webception.name|raw }}
+            </h1>
+        </div>
+
+        <hr>
+
+        <div class="large-12 columns">
+
+            {% if not codeception.ready() %}
+                <div class='panel callout'>
+                    <h3>
+                        <strong>Codeception</strong> config could not be fully loaded.
+                    </h3>
+                    {% if codeception.site.ready() %}
+                        <p>
+                         The configuration for <strong>{{ codeception.site.getName() }}</strong> is currently set as:
+                        </p>
+                        <ul>
+                            <li><strong>{{ codeception.site.getConfig() }}</strong></li>
+                        </ul>
+                        <p>
+                            You can set the location of the configuration in:
+                        </p>
+                        <ul>
+                            <li><strong>{{ codeception.config.location }}</strong></li>
+                        </ul>
+                    {% else %}
+                        <p>
+                            It appears there are no settings in there at all. It may be worth re-downloading it from the <a href='{{ webception.repo }}'>{{ webception.name|raw }}</a> repo.
+                        </p>
+                        <p>
+                            You can set the location of the Codeception configuration in the following:
+                        </p>
+                        <ul>
+                            <li><strong>{{ codeception.config.location }}</strong></li>
+                            </ul>
+                    {% endif %}
+                    <p>
+                        <em><strong>Pro-tip:</strong> Once you've set that, just reload the page.</em>
+                    </p>
+                </div>
+
+            {% endif %}
+
+            <div id="error_container" class='panel callout'>
+                <h3>{{ random(["It appears we have a problem...", "Oh no, I don't believe it!", "What's wrong this time?", "Ah, that ain't right!"]) }}</h3>
+                <p class="message"></p>
+                <ul>
+                    <li><strong class="resource"></strong></li>
+                </ul>
+                <p>
+                    You can set the location of the config in the following file:
+                </p>
+                <ul>
+                    <li><strong class="config"></strong></li>
+                </ul>
+                <p>
+                    <em><strong>Pro-tip:</strong> Once you've fixed that, just reload the page.</em>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+        {% block content %}{% endblock %}
+        </div>
+        <div class=" text-center">
+            <hr>
+            <h6>
+                <a href='{{ webception.repo }}'>{{ webception.name|raw }}</a> (v{{ webception.version }}) for
+                <a href='http://www.codeception.com'>Codeception</a>
+                &copy; {{ "now"|date("Y") }} •
+                Follow <a href='https://www.twitter.com/{{ webception.twitter }}'>{{ webception.twitter }}</a>.
+            </h6>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <script src="js/libs/jquery.js"></script>
+    <script src="js/libs/sprintf.js"></script>
+    <script src="js/libs/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+  </body>
+</html>
