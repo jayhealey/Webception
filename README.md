@@ -16,7 +16,7 @@ You can access multiple test suites and decide which tests to include in a run. 
 
 I'm glad you asked...
 
-<!--<img src="http://i.imgur.com/nSsMFIS.gif">-->
+<img src="http://i.imgur.com/nSsMFIS.gif">
 
 **What's the ideal usage?**
 
@@ -52,24 +52,24 @@ Also note Webception's `codeception.yml` is setup to use `http://webception:80` 
 
 Once you've [downloaded Webception](https://github.com/jayhealey/Webception/archive/master.zip) and unzipped it:
 
-1. Run Composer in the root of Webception to install dependancies:	
+1. Run Composer in the root of Webception to install dependancies:
     `composer install`
 
 2. Ensure Codeception has permissions:
 
 	`sudo chmod a+x vendor/bin/codecept`
-	
-3. Set permissions so Codeception can write out the log files:	
+
+3. Set permissions so Codeception can write out the log files:
 	`sudo chmod -R 777 app/tests/_log`
 
-4. Set permissions so Slim PHP can write to the template cache:	
+4. Set permissions so Slim PHP can write to the template cache:
 	`sudo chmod -R 777 app/templates/_cache`
 
 5. Point your new server to the `public` path of where you unzipped Webception.
 
 You'll now be able to load Webception in your browser.
 
-If there are any issues Webception will do it's best to tell what you need to do. 
+If there are any issues Webception will do it's best to tell what you need to do.
 
 ### 2. Customise the Webception configuration
 
@@ -86,7 +86,7 @@ You can add as many Codeception test suites as you need by adding to the `sites`
 ```
 Put them in order you want to see in the dropdown. And if you only have one entry, you won't see the dropdown.
 
-Feel free to remove/replace the `Webception` entry with one of your own suites. 
+Feel free to remove/replace the `Webception` entry with one of your own suites.
 
 If you have more than one site in the configuration, you can use the site picker on the top-left of Webception to swap between test suites.
 
