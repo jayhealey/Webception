@@ -15,4 +15,4 @@ modules:
             dsn: ''
             user: ''
             password: ''
-            dump: App/tests/_data/dump.sql
+            dump: App/Tests/_data/dump.sql
