@@ -18,9 +18,8 @@ before_script:
   - php composer.phar install --prefer-source
 
   - chmod a+x vendor/bin/codecept
-  - chmod -R 777 App/Tests/_log
-  - chmod -R 777 App/Templates/_cache
 
   - chmod a+x travis_dependencies.sh
   - ./travis_dependencies.sh
+
 script: "vendor/bin/codecept run"
