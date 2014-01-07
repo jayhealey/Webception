@@ -96,7 +96,8 @@ class WebceptionClassTestsTest extends \Codeception\TestCase\Test
         $test->setLog(array('Example Log Line'));
 
         // Confirm the item was added
-        $this->assertEquals($test->getLog(FALSE)[0], $log_line);
+        $log = $test->getLog(FALSE);
+        $this->assertEquals($log[0], $log_line);
         $this->assertEquals(sizeof($test->getLog()), 1);
         $this->assertTrue($test->ran());
 
