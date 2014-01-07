@@ -21,6 +21,6 @@ before_script:
   - chmod -R 777 app/tests/_log
   - chmod -R 777 app/templates/_cache
 
-   - ./travis_dependencies.sh
-
+  - chmod a+x travis_dependencies.sh
+  - ./travis_dependencies.sh
 script: "vendor/bin/codecept run"
