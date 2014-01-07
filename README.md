@@ -110,7 +110,7 @@ There's a few ways you can get in touch:
 
 * **Post bugs, issues, feature requests** via [GitHub Issues](https://github.com/jayhealey/webception/issues).
 
-* **Pull & Fork** on [GitHub](https://github.com/jayhealey/webception/pulls) if you want to get your hands dirty.
+* **Pull & Fork** on [GitHub](https://github.com/jayhealey/Webception/pulls) if you want to get your hands dirty.
 
 And **please let me know** if you use Webception. I'm keen to understand how you'd *like* to use it and if there's anything you'd like to see in future releases.
 
@@ -132,7 +132,7 @@ And selfishly, I couldn't find anything else that acted as a web interface for C
 
 No. It's completely un-official. It's not affiliated or sponsored in anyway by the people who built Codeception.
 
-So, raise all issues about Webception on the Webception [GitHub Issues](https://github.com/jayhealey/webception/issues) page.
+So, raise all issues about Webception on the Webception [GitHub Issues](https://github.com/jayhealey/Webception/issues) page.
 
 ------------
 
@@ -151,4 +151,4 @@ So, raise all issues about Webception on the Webception [GitHub Issues](https://
 
 There's also the [TODO](todo.md) list which contains a list of things I'd like to improve.
 
-If you have any ideas or issues, jump on [GitHub Issues](https://github.com/jayhealey/webception/issues) or [@WebceptionApp](https://www.twitter.com/WebceptionApp) on Twitter.
+If you have any ideas or issues, jump on [GitHub Issues](https://github.com/jayhealey/Webception/issues) or [@WebceptionApp](https://www.twitter.com/WebceptionApp) on Twitter.
