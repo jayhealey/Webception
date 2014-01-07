@@ -55,8 +55,9 @@ if (! function_exists('get_webception_config')) {
 
     function get_webception_config($app)
     {
-        $config    = FALSE;
-        $test_type = $app->request()->params('test');
+        $config            = FALSE;
+        $test_type         = $app->request()->params('test');
+        $webception_config = $app->config('webception');
 
         // If the test query string parameter is set,
         // a test config will be loaded.
@@ -66,7 +67,7 @@ if (! function_exists('get_webception_config')) {
             $test_type = trim(strtolower(remove_file_extension($test_type)));
 
             // Filter the test type into the test string.
-            $test_config = sprintf($app->config('webception')['test'], $test_type);
+            $test_config = sprintf($webception_config['test'], $test_type);
 
             // Load the config if it can be found
             if (file_exists($test_config))
@@ -74,7 +75,7 @@ if (! function_exists('get_webception_config')) {
         }
 
         if ($config == FALSE)
-            $config = require_once($app->config('webception')['config']);
+            $config = require_once($webception_config['config']);
 
         return $config;
     }
