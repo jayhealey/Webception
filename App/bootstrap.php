@@ -10,4 +10,4 @@
  */
 
 // Load helpers functions
-include_once 'functions/helpers.php';
+include_once 'Functions/helpers.php';
