@@ -1,8 +1,8 @@
 paths:
-    tests: App/Tests
-    log: App/Tests/_log
-    data: App/Tests/_data
-    helpers: App/Tests/_helpers
+    tests: ../
+    log: ../_log
+    data: ../_data
+    helpers: ../_helpers
 settings:
     bootstrap: _bootstrap.php
     suite_class: \PHPUnit_Framework_TestSuite
@@ -15,4 +15,4 @@ modules:
             dsn: ''
             user: ''
             password: ''
-            dump: App/tests/_data/dump.sql
+            dump: ../_data/dump.sql

@@ -1,5 +1,5 @@
 composer.phar
 vendor
 package/codecept.phar
-app/tests/_log
-app/templates/_cache
+App/Tests/_log
+App/Templates/_cache

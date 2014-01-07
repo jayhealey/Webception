@@ -22,7 +22,7 @@ session_start();
 define('HASH', 'site_session');
 define('RP', '../');
 require(RP . 'vendor/autoload.php');
-require(RP . 'app/bootstrap.php');
+require(RP . 'App/bootstrap.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +43,8 @@ $app = new \Slim\Slim(array(
         'name'       => '<strong>Web</strong>ception',
         'repo'       => 'https://github.com/jayhealey/webception',
         'twitter'    => '@WebceptionApp',
-        'config'     => RP . 'app/config/codeception.php',
-        'test'       => RP . 'app/tests/_config/codeception_%s.php',
+        'config'     => RP . 'App/Config/codeception.php',
+        'test'       => RP . 'App/Tests/_config/codeception_%s.php',
     ),
 
     /*
@@ -53,7 +53,7 @@ $app = new \Slim\Slim(array(
     |--------------------------------------------------------------------------
     */
 
-    'templates.path' => RP . 'app/templates',
+    'templates.path' => RP . 'App/Templates',
 
 ));
 
@@ -115,7 +115,7 @@ $app->container->singleton('codeception', function () use ($config, $app) {
 |--------------------------------------------------------------------------
 */
 
-foreach (glob(RP . 'app/routes/*.route.php') as $route)
+foreach (glob(RP . 'App/Routes/*.route.php') as $route)
     require_once($route);
 
 /*
@@ -127,7 +127,7 @@ foreach (glob(RP . 'app/routes/*.route.php') as $route)
 $app->view(new \Slim\Views\Twig());
 $app->view->parserOptions = array(
     'charset'          => 'utf-8',
-    'cache'            => realpath(RP .'app/templates/_cache'),
+    'cache'            => realpath(RP .'App/Templates/_cache'),
     'auto_reload'      => true,
     'strict_variables' => false,
     'autoescape'       => true
