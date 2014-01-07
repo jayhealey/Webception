@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=:99.0
+  - sleep 4
+
+  - curl http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar > selenium.jar
+  - java -jar selenium.jar > /dev/null &
+  - sleep 4
+
+  - curl http://getcomposer.org/installer | php
+  - php composer.phar install --prefer-source
+
+  - chmod a+x vendor/bin/codecept
+  - chmod -R 777 app/tests/_log
+  - chmod -R 777 app/templates/_cache
+
+   - ./travis_dependencies.sh
+
+script: "vendor/bin/codecept run"
