@@ -50,25 +50,29 @@ Also note Webception's `codeception.yml` is setup to use `http://webception:80` 
 
 ### 1. Deploy Webception
 
-Once you've [downloaded Webception](https://github.com/jayhealey/Webception/archive/master.zip) and unzipped it:
+You can either install Webception using Composer:
 
-1. Run Composer in the root of Webception to install dependancies:
+`composer create-project jayhealey/webception --stability=dev`
 
-    `composer install`
+Or [downloaded Webception](https://github.com/jayhealey/Webception/archive/master.zip) and unzip it.  Once you've unzipped it, you need to install the Composer dependancies with:
 
-2. Ensure Codeception has permissions:
+`composer install`
+
+Now you can do the following:
+
+1. Ensure Codeception has permissions:
 
 	`sudo chmod a+x vendor/bin/codecept`
 
-3. Set permissions so Codeception can write out the log files:
+2. Set permissions so Codeception can write out the log files:
 
 	`sudo chmod -R 777 App/Tests/_log`
 
-4. Set permissions so Slim PHP can write to the template cache:
+3. Set permissions so Slim PHP can write to the template cache:
 
 	`sudo chmod -R 777 App/Templates/_cache`
 
-5. Point your new server to the `public` path of where you unzipped Webception.
+4. Point your new server to the `public` path of where you unzipped Webception.
 
 You'll now be able to load Webception in your browser.
 
