@@ -34,16 +34,24 @@
 
             {% for type, files in tests %}
 
+            <div class='tests_group'>
+
                 <hr>
 
                 <h4><strong>{{ type|capitalize }}</strong> Tests ({{ files|length }} available)</h4>
 
-                <br>
-                <input type='checkbox' id='{{ type }}_toggle' class='group_toggle' checked>
-
-                <label for='{{ type }}_toggle'>
-                    <strong>RUN ALL</strong>
-                </label>
+                <div class='row'>
+                    <div class='large-6 columns'>
+                        <input type='checkbox' id='all_{{ type }}_toggle' class='all_toggle' checked>
+                        <label for='all_{{ type }}_toggle'>
+                            <em>Include All</em>
+                        </label>
+                        <input type='checkbox' id='{{ type }}_toggle' class='type_toggle' checked>
+                        <label for='{{ type }}_toggle'>
+                            <em>Include {{ type|capitalize }} Tests</em>
+                        </label>
+                    </div>
+                </div>
 
                 {% for row in files|batch(2, '') %}
 
@@ -78,6 +86,8 @@
                 {% endfor %}
 
                 {# end: for row in files|batch(2, '') #}
+
+            </div>
 
             {% endfor %}
 

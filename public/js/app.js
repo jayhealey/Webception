@@ -391,10 +391,10 @@ APP = {
         vars: {
 
             // Elements
-            eTestContainer: '.test',
-            eTestsContainer: '#tests_container',
+            eTestsGroup: '.tests_group',
             eTestState : 'span',
-            eRunAll: '.group_toggle',
+            eRunAll: '.all_toggle',
+            eRunGroup: '.type_toggle',
             eTestCheckboxes: 'div.test input[type=checkbox]',
 
             // Basic styling of the state button
@@ -508,11 +508,6 @@ APP = {
         {
             var state;
 
-            // If the test wasn't run, for whatever reason, it's handled
-            //  in the original AJAX call as an error() callback.
-            // if (! data.run)
-            //     return false;
-
             // Check the state of the completed test and
             // set the UI state and updated counts.
             state = (data.passed == true) ? 'passed' : 'failed';
@@ -546,9 +541,6 @@ APP = {
                     tests.push($(this));
             });
 
-            if (tests.length == 0)
-                return false;
-
             return tests;
         },
 
@@ -557,8 +549,10 @@ APP = {
          */
         start: function() {
 
+            tests = APP.test.find();
+
             // If there are tests available...
-            if (tests = APP.test.find())
+            if (tests.length > 0)
             {
                 APP.console.clear();
                 APP.test.checkboxToggle();
@@ -608,26 +602,73 @@ APP = {
          */
         binds: function()
         {
-            // RUN ALL - toggle the group on/off when clicked.
+            // INCLUDE ALL - toggle the group on/off when clicked.
             $(APP.test.vars.eRunAll).on('click', function(e)
             {
-                $(APP.test.vars.eTestCheckboxes, $(this).parent())
-                    .prop('checked', $(this).is(":checked"));
+                $ischecked = $(this).is(":checked");
 
+                $(APP.test.vars.eRunAll).prop('checked', $ischecked);
+                $(APP.test.vars.eRunGroup).prop('checked', $ischecked);
+                $(APP.test.vars.eTestCheckboxes).prop('checked', $ischecked);
+
+                APP.state.updateCount();
+                APP.state.refresh(APP.state.vars.currentState);
+            });
+
+            // Group Checkboxes - Unchecking a checkbox removes it from the list
+            // and also unchecks the 'Run all' checkbox.
+            $(APP.test.vars.eRunGroup).on('click', function(e)
+            {
+                $ischecked = $(this).is(":checked");
+
+                $(APP.test.vars.eTestCheckboxes, $(this).closest(APP.test.vars.eTestsGroup))
+                    .prop('checked', $ischecked);
+
+                APP.test.checkboxToggleAll();
                 APP.state.updateCount();
                 APP.state.refresh(APP.state.vars.currentState);
             });
 
             // Test Checkboxes - Unchecking a checkbox removes it from the list
-            // and also unchecks the 'Run all' checkbox.
+            // and also unchecks the 'Include All' checkbox.
             $(APP.test.vars.eTestCheckboxes).on('click', function(e)
             {
-                if (! $(this).is(':checked') && $(APP.test.vars.eRunAll + ':checked'))
-                    $(APP.test.vars.eRunAll +':checked').prop('checked', false);
-
+                APP.test.checkboxToggleGroup(this);
+                APP.test.checkboxToggleAll();
                 APP.state.updateCount();
                 APP.state.refresh(APP.state.vars.currentState);
             });
+        },
+
+        /**
+         * Based on the count of how many tests are checked,
+         * the UI toggles the 'Include All' checkboxes.
+         */
+        checkboxToggleAll: function()
+        {
+            // Count all of the available tests
+            var all_checked   = $('form input[type=checkbox]:checked').length;
+            var all_count     = $('form input[type=checkbox]').length;
+
+            // If all the tests are checked, check the 'Include All' checkbox
+            $(APP.test.vars.eRunAll).prop('checked', (all_checked == all_count));
+        },
+
+        /**
+         * Based on the count of how many tests are checked in a group,
+         * the UI toggles the 'Include (type) Tests' and the 'Include All' checkboxes.
+         *
+         * @param  element group Checkbox that handled the click-event.
+         */
+        checkboxToggleGroup: function(group)
+        {
+            // In the current test group, find how many are available & how many are checked
+            var $group        = $(group).closest(APP.test.vars.eTestsGroup);
+            var group_count   = $(APP.test.vars.eTestCheckboxes, $group).length;
+            var group_checked = $(APP.test.vars.eTestCheckboxes +':checked', $group).length;
+
+            // If all the tests in the group are checked, check the 'Include (type) Tests' checkbox
+            $(APP.test.vars.eRunGroup, $group).prop('checked', (group_count == group_checked));
         },
 
         /**
