@@ -2,8 +2,18 @@
     "name": "Webception",
     "description": "Web Interface for running Codeception tests.",
     "keywords": ["codeception", "webception", "testing", "php", "web interface"],
+    "homepage" : "https://github.com/jayhealey/Webception",
+    "authors": [
+        {
+            "name": "James Healey",
+            "email": "jayhealey@gmail.com",
+            "homepage": "http://twitter.com/jayhealey",
+            "role": "Developer"
+        }
+    ],
     "license": "MIT",
     "require": {
+        "php": ">=5.3.0",
         "slim/slim": "2.*",
         "slim/views": "0.1.*",
         "twig/twig": "~1.13",
