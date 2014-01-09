@@ -1,5 +1,5 @@
 {
-    "name": "Webception",
+    "name": "jayhealey/webception",
     "description": "Web Interface for running Codeception tests.",
     "keywords": ["codeception", "webception", "testing", "php", "web interface"],
     "homepage" : "https://github.com/jayhealey/Webception",
