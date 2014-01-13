@@ -305,7 +305,13 @@ class Codeception
         } elseif (! file_exists($path)) {
             $response['error'] = 'The Codeception Log directory does not exist. Please check the following path exists:';
         } elseif (! is_writeable($path)) {
-            $response['error'] = 'The Codeception Log directory can not be written to yet. Please check the following path has \'chmod 777\' set:';
+
+            // Attempt to set writes on the path, but die silently and check again.
+            @chmod($path, 0777);
+
+            if (! is_writeable($path))
+                $response['error'] = 'The Codeception Log directory can not be written to yet. Please check the following path has \'chmod 777\' set:';
+
         }
 
         $response['ready'] = ! isset($response['error']);
