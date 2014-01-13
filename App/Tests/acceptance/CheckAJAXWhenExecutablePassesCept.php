@@ -11,7 +11,6 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('check AJAX call when executable passes.');
-
 $I->sendGET('executable?test=pass');
 $I->seeResponseContainsJson(array(
     'ready' => true,

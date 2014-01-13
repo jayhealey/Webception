@@ -19,4 +19,5 @@ if (isset($_SERVER['TERM_PROGRAM']) || isset($_SERVER['TERM']))
 
 $I = new WebGuy($scenario);
 $I->wantTo('fail at passing');
+
 $I->assertTrue(FALSE);

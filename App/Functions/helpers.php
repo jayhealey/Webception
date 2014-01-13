@@ -29,7 +29,11 @@ if (! function_exists('run_terminal_command')) {
 
         flush();
 
-        $process = proc_open($command, $spec, $pipes, realpath('./'), array());
+        $env = array(
+            'PATH' => '/usr/bin'
+        );
+
+        $process = proc_open($command, $spec, $pipes, realpath('./'), $env);
 
         if (is_resource($process)) {
 
@@ -53,6 +57,15 @@ if (! function_exists('run_terminal_command')) {
 
 if (! function_exists('get_webception_config')) {
 
+    /**
+     * Decide on which Webception configuration file to load
+     * based on the 'test' query string parameter.
+     *
+     * If the test config is not found, it falls back to the default file.
+     *
+     * @param  object $app Slim's App object.
+     * @return array  Array of the application config.
+     */
     function get_webception_config($app)
     {
         $config            = FALSE;
@@ -105,20 +118,6 @@ if (! function_exists('get_route_param')) {
 
 }
 
-if (! function_exists('get_app_mode')) {
-
-    /**
-     * Return the current application mode .
-     *
-     * @return string
-     */
-    function get_app_mode()
-    {
-        return isset($_GET['test']) ? 'test' : 'production';
-    }
-
-}
-
 if (! function_exists('camel_to_sentance')) {
 
     /**
@@ -138,10 +137,10 @@ if (! function_exists('camel_to_sentance')) {
 if (! function_exists('remove_file_extension')) {
 
     /**
-     * Given a file name, remove any extension from the string.
+     * Given a file name, remove any file extension from the string.
      *
-     * @param  [type] $string [description]
-     * @return [type] [description]
+     * @param  string $string
+     * @return string
      */
     function remove_file_extension($string)
     {
