@@ -101,7 +101,7 @@ class CodeceptionClassTestsTest extends \Codeception\TestCase\Test
         $config      = $this->config;
 
         $params = array(
-            $this->config['executable'],        // Codeception Executable
+            PHP_BINDIR .'/php '. $this->config['executable'],        // Codeception Executable
             "run",                              // Command to Codeception
             "--config=\"{$codeception->site->getConfig()}\"", // Full path & file of Codeception
             $this->type,                              // Test Type (Acceptance, Unit, Functional)
