@@ -11,5 +11,12 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('check AJAX call when executable fails');
-$I->amOnPage('executable?test=executable_fail');
-$I->see('"error":"The Codeception executable could not be found.","ready":false');
+// $I->amOnPage('executable?test=executable_fail');
+// $I->see('The Codeception executable could not be found');
+
+$I->sendGET('executable?test=executable_fail');
+$I->seeResponseContainsJson(array(
+    'ready' => false,
+    'error' => "The Codeception executable could not be found.",
+));
+

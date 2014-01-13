@@ -11,10 +11,15 @@
 class_name: WebGuy
 modules:
     enabled:
-        - WebDriver
+        - PhpBrowser
         - WebHelper
+        - REST
     config:
-        WebDriver:
-            url: 'http://webception:80/'
-            browser: 'firefox'
-            wait: 0
+        REST:
+            url: 'http://webception/'
+            timeout: 90
+        PhpBrowser:
+            url: 'http://webception/'
+            curl:
+                CURLOPT_RETURNTRANSFER: true
+                CURLOPT_FOLLOWLOCATION: true

@@ -11,5 +11,7 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('check AJAX call when the Codeception log check passes.');
-$I->amOnPage('logs?test=pass');
-$I->see('"ready":true');
+$I->sendGET('logs?test=pass');
+$I->seeResponseContainsJson(array(
+    'ready' => true,
+));

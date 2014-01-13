@@ -11,5 +11,11 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('run test that does not exist to confirm the response');
-$I->amOnPage('run/lol/fake-test-id');
-$I->see('{"message":"The test could not be found.","run":false,"passed":false,"state":"error","log":null}');
+$I->sendGET('run/lol/fake-test-id');
+$I->seeResponseContainsJson(array(
+    'message' => 'The test could not be found.',
+    'run'     => false,
+    'passed'  => false,
+    'state'   => 'error',
+    'log'     => NULL,
+));

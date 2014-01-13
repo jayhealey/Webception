@@ -11,5 +11,10 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('run a passing test');
-$I->amOnPage('run/acceptance/'. md5('acceptance' . 'TheTestThatPasses'));
-$I->see('"run":true,"passed":true,"state":"passed"');
+$I->sendGET('run/acceptance/'. md5('acceptance' . 'TheTestThatPasses'));
+$I->seeResponseContainsJson(array(
+    'message' => NULL,
+    'run'     => true,
+    'passed'  => true,
+    'state'   => 'passed',
+));

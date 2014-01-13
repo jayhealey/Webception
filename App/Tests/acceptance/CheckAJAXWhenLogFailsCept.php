@@ -11,5 +11,8 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('check AJAX call when the Codeception log check fails.');
-$I->amOnPage('logs?test=log_fail');
-$I->see('"error":"The Codeception Log directory does not exist. Please check the following path exists:","ready":false');
+$I->sendGET('logs?test=log_fail');
+$I->seeResponseContainsJson(array(
+    'ready' => false,
+    'error' => "The Codeception Log directory does not exist. Please check the following path exists:",
+));

@@ -11,5 +11,9 @@
 
 $I = new WebGuy($scenario);
 $I->wantTo('run a failing test');
-$I->amOnPage('run/acceptance/'. md5('acceptance'.'TheTestThatFails'));
-$I->see('"run":true,"passed":false,"state":"failed"');
+$I->sendGET('run/acceptance/'. md5('acceptance'.'TheTestThatFails'));
+$I->seeResponseContainsJson(array(
+    'run'     => true,
+    'passed'  => false,
+    'state'   => 'failed',
+));
