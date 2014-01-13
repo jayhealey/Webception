@@ -29,11 +29,7 @@ if (! function_exists('run_terminal_command')) {
 
         flush();
 
-        $env = array(
-            'PATH' => '/usr/bin'
-        );
-
-        $process = proc_open($command, $spec, $pipes, realpath('./'), $env);
+        $process = proc_open($command, $spec, $pipes, realpath('./'), $_ENV);
 
         if (is_resource($process)) {
 
