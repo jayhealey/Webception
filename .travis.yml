@@ -20,4 +20,4 @@ before_script:
 
   - chmod a+x travis_dependencies.sh
   - ./travis_dependencies.sh
-script: "vendor/bin/codecept run"
+script: "vendor/bin/codecept run unit"
