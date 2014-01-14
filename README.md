@@ -10,7 +10,7 @@ Built with [Slim PHP framework](http://www.slimframework.com/) and [Foundation C
 
 Webception is a deployable web-application that allows you to run all your Codeception tests in the browser.
 
-You can access multiple test suites and decide which tests to include in a run. Thi start, stop and restart the process while watching the output of the tests in the Console.
+You can access multiple test suites and decide which tests to include in a run. It allows you start, stop and restart the process whilst watching the test results in the Console.
 
 **What does it look like?**
 
