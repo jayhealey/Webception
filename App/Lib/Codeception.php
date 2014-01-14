@@ -211,6 +211,9 @@ class Codeception
         // Get the full command path to run the test.
         $command = $this->getCommandPath($test->getType(), $test->getFilename());
 
+        // Attempt to set the correct writes to Codeceptions Log path.
+        @chmod($this->getLogPath(), 0777);
+
         // Run the helper function (as it's not specific to Codeception)
         // which returns the result of running the terminal command into an array.
         $output  = run_terminal_command($command);
@@ -219,6 +222,16 @@ class Codeception
         $test->setLog($output);
 
         return $test;
+    }
+
+    /**
+     * Get the Codeception log path
+     *
+     * @return  string
+     */
+    public function getLogPath()
+    {
+        return $this->config['paths']['log'];
     }
 
     /**
@@ -305,13 +318,7 @@ class Codeception
         } elseif (! file_exists($path)) {
             $response['error'] = 'The Codeception Log directory does not exist. Please check the following path exists:';
         } elseif (! is_writeable($path)) {
-
-            // Attempt to set writes on the path, but die silently and check again.
-            @chmod($path, 0777);
-
-            if (! is_writeable($path))
-                $response['error'] = 'The Codeception Log directory can not be written to yet. Please check the following path has \'chmod 777\' set:';
-
+            $response['error'] = 'The Codeception Log directory can not be written to yet. Please check the following path has \'chmod 777\' set:';
         }
 
         $response['ready'] = ! isset($response['error']);
