@@ -245,7 +245,7 @@ class Codeception
     {
         // Build all the different parameters as part of the console command
         $params = array(
-            PHP_BINDIR .'/php '. $this->config['executable'],        // Codeception Executable
+            $this->config['executable'],        // Codeception Executable
             "run",                              // Command to Codeception
             "--config=\"{$this->site->getConfig()}\"", // Full path & file of Codeception
             $type,                              // Test Type (Acceptance, Unit, Functional)
