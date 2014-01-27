@@ -137,10 +137,11 @@ class Test
     public function init($type, $file)
     {
         $filename       = $this->filterFileName($file->getFileName());
+        $posTypePath    = strpos($file->getPathname(), "/{$type}/") + strlen("/{$type}/");
 
         $this->hash     = $this->makeHash($type . $filename);
         $this->title    = $this->filterTitle($filename);
-        $this->filename = $file->getFileName();
+        $this->filename = substr($file->getPathname(), $posTypePath);
         $this->file     = $file;
         $this->type     = $type;
         $this->state    = self::STATE_READY; // Not used yet.

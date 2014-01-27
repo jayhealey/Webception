@@ -130,8 +130,9 @@ class Codeception
             if (! $active)
                 break;
 
-            $files = new \DirectoryIterator(
-                "{$this->config['paths']['tests']}/{$type}/"
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}/{$type}/", \FilesystemIterator::SKIP_DOTS),
+                \RecursiveIteratorIterator::SELF_FIRST
             );
 
             // Iterate through all the files, and filter out
