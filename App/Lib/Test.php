@@ -82,7 +82,7 @@ class Test
             'PASSED',   // Functional & Acceptance Test
             'OK \('     // Unit Test
         ),
-        'failed'    => 'FAILURES',
+        'failed'    => 'FAIL',
     );
 
     /**
@@ -275,13 +275,24 @@ class Test
      */
     public function setLog($lines = array())
     {
+        $has_fail = false;
+        $has_pass = false;
         foreach ($lines as $line) {
 
-            if ($this->checkLogForTestPass($line))
-                $this->setPassed();
+            if ($this->checkLogForTestPass($line)) {
+                $has_pass = true;
+            }
+
+            if($this->checkLogForTestFail($line)) {
+                $has_fail = true;
+            }
 
             // Filter the line of any junk and add to the log.
             $this->log[] = $this->filterLog($line);
+        }
+
+        if( $has_pass && !$has_fail ) {
+            $this->setPassed();
         }
     }
 
@@ -315,6 +326,18 @@ class Test
     public function checkLogForTestPass($line)
     {
         return count(preg_grep("/({$this->passed_regex})/", array($line))) > 0;
+    }
+
+    /**
+     * Check if it contains any text that indiciates that the test has failed.
+     *
+     * @param string $line
+     * @return boolean
+     */
+    public function checkLogForTestFail($line)
+    {
+        if(preg_match('/'.$this->responses['failed'].'/', $line)) return true;
+        return false;
     }
 
     /**
