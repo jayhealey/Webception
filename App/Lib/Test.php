@@ -126,6 +126,9 @@ class Test
         // Declare the regex string containing all the responses that
         // can indicate that as a passed test.
         $this->passed_regex = implode('|', $this->responses['passed']);
+
+        // maybe there will be any more failures? Then we are going to need this
+        $this->failure_regex = $this->responses['failed'];
     }
 
     /**
@@ -234,6 +237,14 @@ class Test
     }
 
     /**
+     * Sets passed to false if test fails
+     */
+    public function setFailed()
+    {
+        $this->passed = false;
+    }
+
+    /**
      * Return if the test was run and passed
      *
      * @return boolean
@@ -280,6 +291,10 @@ class Test
             if ($this->checkLogForTestPass($line))
                 $this->setPassed();
 
+            if ($this->checkLogForTestFailure($line)) {
+                $this->setFailed();
+            }
+
             // Filter the line of any junk and add to the log.
             $this->log[] = $this->filterLog($line);
         }
@@ -315,6 +330,17 @@ class Test
     public function checkLogForTestPass($line)
     {
         return count(preg_grep("/({$this->passed_regex})/", array($line))) > 0;
+    }
+
+    /**
+     * Checks if line contains failure regex
+     *
+     * @param string $line
+     * @return bool
+     */
+    public function checkLogForTestFailure($line)
+    {
+        return count(preg_grep("/({$this->failure_regex})/", array($line))) > 0;
     }
 
     /**
