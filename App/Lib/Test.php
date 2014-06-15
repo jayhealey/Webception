@@ -286,13 +286,15 @@ class Test
      */
     public function setLog($lines = array())
     {
+        $failed = false;
         foreach ($lines as $line) {
 
-            if ($this->checkLogForTestPass($line))
+            if ($this->checkLogForTestPass($line) && $failed==false)
                 $this->setPassed();
 
             if ($this->checkLogForTestFailure($line)) {
                 $this->setFailed();
+                $failed = true;
             }
 
             // Filter the line of any junk and add to the log.
