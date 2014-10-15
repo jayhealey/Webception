@@ -443,9 +443,14 @@ APP = {
                 // and run that test.
                 test = tests.shift();
 
+                var env = APP.test.findEnvs();
+                env = env.join('+');
+
+                var url = test.attr('action') + '?env=' + env;
+
                 // Run the test
                 $.ajax({
-                    url         : test.attr('action'),
+                    url         : url,
                     method      : 'GET',
                     cache       : false,
                     dataType    : "json",
@@ -542,6 +547,28 @@ APP = {
             });
 
             return tests;
+        },
+
+        /**
+         * Find all environments
+         *
+         * @return Array of form objects or FALSE
+         */
+        findEnvs: function()
+        {
+            var checkedIds = $(":checkbox[name^=envs]:checked").map(function() {
+                return this.id;
+            }).get();
+
+            checkedIds = checkedIds.map(function(item){
+                if (item.indexOf('_envs') !== -1) {
+                    return item.substring(0, item.indexOf('_envs'));
+                } else {
+                    return '';
+                }
+            });
+
+            return checkedIds;
         },
 
         /**
