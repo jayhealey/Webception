@@ -104,7 +104,7 @@ class Codeception
             return false;
 
         // Using Symfony's Yaml parser, the file gets turned into an array.
-        $config = \Symfony\Component\Yaml\Yaml::parse($full_path);
+        $config = \Symfony\Component\Yaml\Yaml::parse(file_get_contents($full_path));
 
         // Update the config to include the full path.
         foreach ($config['paths'] as $key => &$test_path) {
