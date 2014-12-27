@@ -345,7 +345,7 @@ class Codeception
 
         if (! file_exists($file)) {
             $response['error'] = 'The Codeception executable could not be found.';
-        } elseif ( ! is_executable($file)) {
+        } elseif ( ! is_executable($file) && strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
             $response['error'] = 'Codeception isn\'t executable. Have you set executable rights to the following (try chmod o+x).';
         }
 
