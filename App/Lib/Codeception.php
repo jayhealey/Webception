@@ -130,8 +130,15 @@ class Codeception
             if (! $active)
                 break;
 
+            $testdir = "{$this->config['paths']['tests']}/{$type}/";
+
+            if (!is_dir($testdir)) {
+                // If no directory exists for the test type, continue
+                continue;
+            }
+
             $files = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}/{$type}/", \FilesystemIterator::SKIP_DOTS),
+                new \RecursiveDirectoryIterator($testdir, \FilesystemIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::SELF_FIRST
             );
 
