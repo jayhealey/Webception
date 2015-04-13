@@ -20,7 +20,7 @@
                             {% if codeception.site.hasChoices() %}
                                 <ul class="dropdown">
                                 {% for hash, site in codeception.site.getSites() %}
-                                    <li><a href="/?hash={{ hash }}">{{ site.name }}</a></li>
+                                    <li><a href="?hash={{ hash }}">{{ site.name }}</a></li>
                                 {% endfor %}
                                 </ul>
                             {% endif %}
