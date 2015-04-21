@@ -141,6 +141,10 @@ No. It's completely un-official. It's not affiliated or sponsored in anyway by t
 
 So, raise all issues about Webception on the Webception [GitHub Issues](https://github.com/jayhealey/Webception/issues) page.
 
+**How do I run webception in WAMP on windows?
+By default WAMP disables environment variables and the php executable cannot be found without the system path being available. 
+Enable environment variables by editing c:\wamp\bin\apache\apache2.4.9\bin\php.ini and ensure the line 
+variables_order = "EGPCS"
 ------------
 
 <a name='roadmap'></a>
