@@ -160,9 +160,15 @@ class Codeception
 
             // Iterate through all the files, and filter out
             //      any files that are in the ignore list.
+            
             foreach ($files as $file) {
-
-                if (! in_array($file->getFilename(), $this->config['ignore'])
+				$pathMatch=false;
+				foreach($this->config['ignore'] as $k=>$ignorePattern) {
+					if (strpos($file->getPathname(),$ignorePattern)===true) {
+						$pathMatch=true;
+					}
+				}
+				if (!$pathMatch && !in_array($file->getFilename(), $this->config['ignore'])
                    && $file->isFile())
                 {
                     // Declare a new test and add it to the list.
@@ -345,7 +351,7 @@ class Codeception
             $response['passed'] = $test->passed();
             $response['state']  = $test->getState();
             $response['title']  = $test->getTitle();
-            $response['title']  = "<a href='#' >".$test->getTitle()."</a>";
+            $response['outputurl']  = "<a href='#' >".$test->getTitle()."</a>";
         }
 
         return $response;
