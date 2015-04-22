@@ -21,8 +21,9 @@ return array(
 
     'sites' => array(
 
-        'Webception'         => dirname(__FILE__) .'/../../codeception.yml',
-
+        //'cm5 staff' 			=> dirname(__FILE__) .'\..\..\..\2picrm/modules\staff\codeception.yml',
+        'Webception'         => dirname(__FILE__) .'/../../codeception.yml'
+		
     ),
 
     /*
@@ -63,6 +64,7 @@ return array(
         'CodeGuy.php',
         '_bootstrap.php',
         '.DS_Store',
+        '_steps',
     ),
 
     /*

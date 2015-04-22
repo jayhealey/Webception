@@ -164,7 +164,7 @@ class Codeception
             foreach ($files as $file) {
 				$pathMatch=false;
 				foreach($this->config['ignore'] as $k=>$ignorePattern) {
-					if (strpos($file->getPathname(),$ignorePattern)===true) {
+					if (strpos($file->getPathname(),$ignorePattern)!==false) {
 						$pathMatch=true;
 					}
 				}
