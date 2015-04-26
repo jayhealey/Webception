@@ -21,9 +21,11 @@ return array(
 
     'sites' => array(
 
-        'Webception'         => dirname(__FILE__) .'/../../codeception.yml',
+        'Webception'         => dirname(__FILE__) .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
+            .DIRECTORY_SEPARATOR.'codeception.yml',
 
     ),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +39,9 @@ return array(
     |
     */
 
-    'executable' => dirname(__FILE__) .'/../../vendor/bin/codecept',
+    'executable' => dirname(__FILE__) .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
+        .DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codecept',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -73,4 +77,13 @@ return array(
     */
 
     'location'   => __FILE__,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Setting a Directory seperator in the configuration.
+    | @todo Implement config driven seperator inplace of DIRECTORY_SEPERATOR
+    |--------------------------------------------------------------------------
+    */
+    'DS'        => DIRECTORY_SEPARATOR,
+
 );
