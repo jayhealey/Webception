@@ -45,8 +45,14 @@ return array(
     |
     */
 
-    'executable' => dirname(__FILE__) .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
-        .DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codecept',
+    'executable' =>
+        dirname(__FILE__) .
+        DIRECTORY_SEPARATOR.'..'.
+        DIRECTORY_SEPARATOR.'..'.
+        DIRECTORY_SEPARATOR.'vendor'.
+        DIRECTORY_SEPARATOR.'codeception'.
+        DIRECTORY_SEPARATOR.'codeception'.
+        DIRECTORY_SEPARATOR.'codecept',
 
 
     /*
