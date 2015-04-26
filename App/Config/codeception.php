@@ -26,6 +26,12 @@ return array(
 
     ),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Execute Codeception as a PHP command
+    |--------------------------------------------------------------------------
+    */
+    'run_php'        => TRUE,
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +46,7 @@ return array(
     */
 
     'executable' => dirname(__FILE__) .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
-        .DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codecept',
+        .DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'codeception'.DIRECTORY_SEPARATOR.'codecept',
 
 
     /*
@@ -86,4 +92,11 @@ return array(
     */
     'DS'        => DIRECTORY_SEPARATOR,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Setting whether to pass additional run commands
+    |--------------------------------------------------------------------------
+    */
+    'debug'        => FALSE,
+    'steps'        => TRUE,
 );
