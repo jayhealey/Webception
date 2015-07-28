@@ -29,7 +29,7 @@ if (! function_exists('run_terminal_command')) {
 
         flush();
 
-        $process = proc_open($command, $spec, $pipes, realpath('./'), $_ENV);
+        $process = proc_open($command, $spec, $pipes, realpath('./'));
 
         if (is_resource($process)) {
 
