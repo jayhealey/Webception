@@ -61,4 +61,12 @@ return array(
     ),
 
     'location'   => __FILE__,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Setting a Directory seperator in the configuration.
+    | @todo Implement config driven seperator inplace of DIRECTORY_SEPERATOR
+    |--------------------------------------------------------------------------
+    */
+    'DS'        => DIRECTORY_SEPARATOR,
 );
