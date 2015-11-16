@@ -36,8 +36,16 @@ return array_merge_recursive(array(
     */
 
     'sites' => array(
-        'Webception'         => dirname(__FILE__) .'/../../codeception.yml',
+        'Webception'         => dirname(__FILE__) .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
+            .DIRECTORY_SEPARATOR.'codeception.yml',
     ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Execute Codeception as a PHP command
+    |--------------------------------------------------------------------------
+    */
+    'run_php'        => TRUE,
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +59,15 @@ return array_merge_recursive(array(
     |
     */
 
-    'executable' => dirname(__FILE__) .'/../../vendor/bin/codecept',
+    'executable' =>
+        dirname(__FILE__) .
+        DIRECTORY_SEPARATOR.'..'.
+        DIRECTORY_SEPARATOR.'..'.
+        DIRECTORY_SEPARATOR.'vendor'.
+        DIRECTORY_SEPARATOR.'codeception'.
+        DIRECTORY_SEPARATOR.'codeception'.
+        DIRECTORY_SEPARATOR.'codecept',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -87,4 +103,20 @@ return array_merge_recursive(array(
     */
 
     'location'   => __FILE__,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Setting a Directory seperator in the configuration.
+    | @todo Implement config driven seperator inplace of DIRECTORY_SEPERATOR
+    |--------------------------------------------------------------------------
+    */
+    'DS'        => DIRECTORY_SEPARATOR,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Setting whether to pass additional run commands
+    |--------------------------------------------------------------------------
+    */
+    'debug'        => FALSE,
+    'steps'        => TRUE,
 ), $localConfig);

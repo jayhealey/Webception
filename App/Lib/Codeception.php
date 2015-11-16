@@ -131,7 +131,7 @@ class Codeception
                 break;
 
             $files = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}/{$type}/", \FilesystemIterator::SKIP_DOTS),
+                new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}".$this->config['DS']."{$type}".$this->config['DS'], \FilesystemIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::SELF_FIRST
             );
 
@@ -254,6 +254,19 @@ class Codeception
             $filename,                          // Filename of the Codeception test
             "2>&1"                              // Added to force output of running executable to be streamed out
         );
+
+        //Run Codeception executable with a PHP command
+        if(isset($this->config['run_php']) && $this->config['run_php']) {
+            array_unshift($params, "php ");
+        }
+        //Add Debug command to command line if set in configuration
+        if(isset($this->config['debug']) && $this->config['debug']) {
+            $params[] = "--debug";
+        }
+        //Add Steps command to command line if set in configuration
+        if(isset($this->config['steps']) && $this->config['steps']) {
+            $params[] = "--steps";
+        }
 
         // Build the command to be run.
         return implode(' ', $params);

@@ -140,7 +140,8 @@ class Test
     public function init($type, $file)
     {
         $filename       = $this->filterFileName($file->getFileName());
-        $posTypePath    = strpos($file->getPathname(), "/{$type}/") + strlen("/{$type}/");
+        $posTypePath    = strpos($file->getPathname(), DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR)
+            + strlen(DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR);
 
         $this->hash     = $this->makeHash($type . $filename);
         $this->title    = $this->filterTitle($filename);
