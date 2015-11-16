@@ -106,6 +106,9 @@ class Codeception
         // Using Symfony's Yaml parser, the file gets turned into an array.
         $config = \Symfony\Component\Yaml\Yaml::parse(file_get_contents($full_path));
 
+        if (!isset($config['paths']) || !is_array($config['paths'])) {
+            throw new \Exception("The config does not appear to contain any paths: ".$path.$file);
+        }
         // Update the config to include the full path.
         foreach ($config['paths'] as $key => &$test_path) {
             $test_path = file_exists($path . $test_path) ?
