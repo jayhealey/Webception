@@ -1,6 +1,11 @@
 <?php
 
-return array(
+$localConfig = array();
+if (file_exists(__DIR__.'/codeception-local.php')) {
+    $localConfig = require(__DIR__.'/codeception-local.php');
+}
+
+return array_merge_recursive(array(
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +27,6 @@ return array(
     'sites' => array(
 
         'Webception'         => dirname(__FILE__) .'/../../codeception.yml',
-
     ),
 
     /*
@@ -73,4 +77,4 @@ return array(
     */
 
     'location'   => __FILE__,
-);
+), $localConfig);
