@@ -1,5 +1,16 @@
 <?php
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default Configurations
+    |--------------------------------------------------------------------------
+    |
+    | This file holds the default configurations for WebCeption. Rather than editing
+    | this file copy `codeception-local-sample.php` to `codeception-local.php` and
+    | update that file with your custom configs.
+    |
+    */
+
 $localConfig = array();
 if (file_exists(__DIR__.'/codeception-local.php')) {
     $localConfig = require(__DIR__.'/codeception-local.php');
@@ -25,7 +36,6 @@ return array_merge_recursive(array(
     */
 
     'sites' => array(
-
         'Webception'         => dirname(__FILE__) .'/../../codeception.yml',
     ),
 
