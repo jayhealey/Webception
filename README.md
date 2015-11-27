@@ -158,6 +158,6 @@ So, raise all issues about Webception on the Webception [GitHub Issues](https://
 
 * **More Webception Tests**: It feels fitting that an application that runs tests should be drowning in tests. So, there'll be more of them in future.
 
-There's also the [TODO](todo.md) list which contains a list of things I'd like to improve.
+There's also the [TODO](TODO.md) list which contains a list of things I'd like to improve.
 
 If you have any ideas or issues, jump on [GitHub Issues](https://github.com/jayhealey/Webception/issues) or [@WebceptionApp](https://www.twitter.com/WebceptionApp) on Twitter.
