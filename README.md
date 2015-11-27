@@ -119,7 +119,7 @@ There's a few ways you can get in touch:
 
 * **Post bugs, issues, feature requests** via [GitHub Issues](https://github.com/jayhealey/webception/issues).
 
-* **Pull & Fork** on [GitHub](https://github.com/jayhealey/Webception/pulls) if you want to get your hands dirty.
+* **Pull & Fork** on [GitHub](https://github.com/jayhealey/Webception/pulls) if you want to get your hands dirty. Please ensure that any new features you add have assosciated tests with them, and where possible point yuor feature request at the appropriate version (as per the [Roadmap](https://github.com/jayhealey/Webception/wiki))
 
 And **please let me know** if you use Webception. I'm keen to understand how you'd *like* to use it and if there's anything you'd like to see in future releases.
 
