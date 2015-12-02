@@ -112,6 +112,22 @@ class Codeception
                  realpath($path . $test_path) : $path . $test_path;
         }
 
+        $config['env'] = array();
+
+        if (isset($this->config['tests'])) {
+            foreach ($this->config['tests'] as $type => $active) {
+
+                if (! $active)
+                    break;
+
+                if ($suite = \Symfony\Component\Yaml\Yaml::parse($config['paths']['tests'] . "/$type.suite.yml")) {
+                    if (isset($suite['env'])) {
+                        $config['env'][$type] = array_keys($suite['env']);
+                    }
+                }
+            }
+        }
+
         return $config;
     }
 
@@ -130,16 +146,29 @@ class Codeception
             if (! $active)
                 break;
 
-            $files = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}/{$type}/", \FilesystemIterator::SKIP_DOTS),
+             $testdir = $this->config['paths']['tests'].DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR;
+
+            if (!is_dir($testdir)) {
+                // If no directory exists for the test type, continue
+                continue;
+            }
+            
+             $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($testdir, \FilesystemIterator::SKIP_DOTS),
                 \RecursiveIteratorIterator::SELF_FIRST
             );
 
             // Iterate through all the files, and filter out
             //      any files that are in the ignore list.
+            
             foreach ($files as $file) {
-
-                if (! in_array($file->getFilename(), $this->config['ignore'])
+				$pathMatch=false;
+				foreach($this->config['ignore'] as $k=>$ignorePattern) {
+					if (strpos($file->getPathname(),$ignorePattern)!==false) {
+						$pathMatch=true;
+					}
+				}
+				if (!$pathMatch && !in_array($file->getFilename(), $this->config['ignore'])
                    && $file->isFile())
                 {
                     // Declare a new test and add it to the list.
@@ -209,8 +238,10 @@ class Codeception
      */
     public function run(Test $test)
     {
+        $env = $this->getEnvironments($test->getType());
+
         // Get the full command path to run the test.
-        $command = $this->getCommandPath($test->getType(), $test->getFilename());
+        $command = $this->getCommandPath($test->getType(), $test->getFilename(), $env);
 
         // Attempt to set the correct writes to Codeceptions Log path.
         @chmod($this->getLogPath(), 0777);
@@ -223,6 +254,26 @@ class Codeception
         $test->setLog($output);
 
         return $test;
+    }
+
+    public function getEnvironments($type)
+    {
+        $env = array();
+        if (isset($_GET['env'])) {
+
+            foreach(explode(' ', $_GET['env']) as $value){
+                if ($value) {
+
+                    $value = str_replace($type . '_', '', $value);
+                    if (isset($this->config['env'][$type]) && in_array($value, $this->config['env'][$type])) {
+                        $env[] = '--env=' . $value;
+                    }
+
+                }
+            }
+        }
+
+        return $env;
     }
 
     /**
@@ -242,17 +293,22 @@ class Codeception
      * @param  string $filename Name of the Test
      * @return string Full command to execute Codeception with requred parameters.
      */
-    public function getCommandPath($type, $filename)
+    public function getCommandPath($type, $filename, $env)
     {
         // Build all the different parameters as part of the console command
-        $params = array(
-            $this->config['executable'],        // Codeception Executable
-            "run",                              // Command to Codeception
-            "--no-colors",                      // Forcing Codeception to not use colors, if enabled in codeception.yml
-            "--config=\"{$this->site->getConfig()}\"", // Full path & file of Codeception
-            $type,                              // Test Type (Acceptance, Unit, Functional)
-            $filename,                          // Filename of the Codeception test
-            "2>&1"                              // Added to force output of running executable to be streamed out
+        $params = array_merge(
+            array(
+                $this->config['executable'],        // Codeception Executable
+                "run",                              // Command to Codeception
+                "--no-colors",                      // Forcing Codeception to not use colors, if enabled in codeception.yml
+                "--config=\"{$this->site->getConfig()}\"", // Full path & file of Codeception
+            ),
+            $env,
+            array(
+                $type,                              // Test Type (Acceptance, Unit, Functional)
+                $filename,                          // Filename of the Codeception test
+                "2>&1"                              // Added to force output of running executable to be streamed out
+            )
         );
 
         // Build the command to be run.
@@ -295,6 +351,7 @@ class Codeception
             $response['passed'] = $test->passed();
             $response['state']  = $test->getState();
             $response['title']  = $test->getTitle();
+            $response['outputurl']  = "<a href='#' >".$test->getTitle()."</a>";
         }
 
         return $response;
