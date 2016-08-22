@@ -120,6 +120,6 @@ return array_merge_recursive(array(
     | Setting whether to pass additional run commands
     |--------------------------------------------------------------------------
     */
-    'debug'        => true,
+    'debug'        => FALSE,
     'steps'        => TRUE,
 ), $localConfig);

@@ -1,5 +1,10 @@
-## 0.1.1 (2015-11-27)
+## 0.1.2 (2015-11-27)
 ** WORK IN PROGRESS **
+ - Updated CodeCeption to version 2
+ - Updated all other libraries
+- Added: Support for CodeCeption environments
+
+## 0.1.1 (2015-11-27)
  - Windows Support
  - Improved error handling (a few better error messages)
  - Added ability to have local config outside of version control
