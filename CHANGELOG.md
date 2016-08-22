@@ -1,8 +1,7 @@
-## 0.1.2 (2015-11-27)
-** WORK IN PROGRESS **
+## 0.1.2 (2016-08-22)
  - Updated CodeCeption to version 2
  - Updated all other libraries
-- Added: Support for CodeCeption environments
+ - Added support for CodeCeption environments
 
 ## 0.1.1 (2015-11-27)
  - Windows Support
