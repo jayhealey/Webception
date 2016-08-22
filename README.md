@@ -1,6 +1,8 @@
 # Webception
 
-#### Web Interface for running [Codeception](http://www.codeception.com) tests.
+[![Join the chat at https://gitter.im/jayhealey/Webception](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayhealey/Webception?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+#### Web Interface for running [Codeception](http://codeception.com) tests.
 
 Built with [Slim PHP framework](http://www.slimframework.com/) and [Foundation CSS framework](http://foundation.zurb.com/).
 
@@ -117,7 +119,7 @@ There's a few ways you can get in touch:
 
 * **Post bugs, issues, feature requests** via [GitHub Issues](https://github.com/jayhealey/webception/issues).
 
-* **Pull & Fork** on [GitHub](https://github.com/jayhealey/Webception/pulls) if you want to get your hands dirty.
+* **Pull & Fork** on [GitHub](https://github.com/jayhealey/Webception/pulls) if you want to get your hands dirty. Please ensure that any new features you add have assosciated tests with them, and where possible point yuor feature request at the appropriate version (as per the [Roadmap](https://github.com/jayhealey/Webception/wiki))
 
 And **please let me know** if you use Webception. I'm keen to understand how you'd *like* to use it and if there's anything you'd like to see in future releases.
 
@@ -156,6 +158,6 @@ So, raise all issues about Webception on the Webception [GitHub Issues](https://
 
 * **More Webception Tests**: It feels fitting that an application that runs tests should be drowning in tests. So, there'll be more of them in future.
 
-There's also the [TODO](todo.md) list which contains a list of things I'd like to improve.
+There's also the [TODO](TODO.md) list which contains a list of things I'd like to improve.
 
 If you have any ideas or issues, jump on [GitHub Issues](https://github.com/jayhealey/Webception/issues) or [@WebceptionApp](https://www.twitter.com/WebceptionApp) on Twitter.
