@@ -25,10 +25,14 @@ $app->get('/', function ($site = null) use ($app) {
     $test_count  = 0;
     $webception  = $app->config('webception');
     $codeception = $app->codeception;
+    $environments = array();
 
     if ($codeception->ready()) {
         $tests      = $codeception->getTests();
         $test_count = $codeception->getTestTally();
+        if (isset($codeception->config['env'])) {
+            $environments = $codeception->config['env'];
+        }
     }
 
     $app->render('dashboard.html', array(
@@ -37,5 +41,6 @@ $app->get('/', function ($site = null) use ($app) {
         'codeception' => $codeception,
         'tests'       => $tests,
         'test_count'  => $test_count,
+        'environments'=> $environments
     ));
 });
