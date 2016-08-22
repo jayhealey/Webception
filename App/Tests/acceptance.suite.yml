@@ -16,6 +16,7 @@ modules:
         - REST
     config:
         REST:
+            depends: PhpBrowser
             url: 'http://webception/'
             timeout: 90
         PhpBrowser:
