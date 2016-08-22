@@ -46,7 +46,7 @@ Out of the box, Webception is configured to run it's own Codeception tests.
 
 You'll need [Composer](http://getcomposer.org/download/) to be installed and the Codeception executable and logs directory need full read/write permissions.
 
-The *only* configuration file you need to update is `App/Config/codeception.php`. It's here where you add references to the `codeception.yml` configurations.
+The *only* configuration file you need to update is `App/Config/codeception-local.php` which you should create by copying `App/Config/codeception-local-sample.php`. It's here where you add references to the `codeception.yml` configurations.
 
 Also note Webception's `codeception.yml` is setup to use `http://webception:80` as it's host. Change this to be whatever host and port you decide to run Webception on.
 
