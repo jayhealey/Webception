@@ -64,7 +64,7 @@ Now you can do the following:
 
 1. Ensure Codeception has permissions:
 
-   `sudo chmod a+x vendor/bin/codecept`
+   `sudo chmod a+x bin/codecept`
 
 2. Set permissions so Codeception can write out the log files:
 
