@@ -123,7 +123,7 @@ class Codeception
                 if (! $active)
                     break;
 
-                if ($suite = \Symfony\Component\Yaml\Yaml::parse($config['paths']['tests'] . "/$type.suite.yml")) {
+                if ($suite = \Symfony\Component\Yaml\Yaml::parse(file_get_contents($config['paths']['tests'] . "/$type.suite.yml"))) {
                     if (isset($suite['env'])) {
                         $config['env'][$type] = array_keys($suite['env']);
                     }

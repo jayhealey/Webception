@@ -18,7 +18,7 @@
         "slim/views": "0.1.*",
         "twig/twig": "~1.13",
         "codeception/codeception": "2.*",
-        "symfony/yaml": "2.5.x-dev"
+        "monolog/monolog": "*"
     },
     "autoload": {
         "psr-0": {
