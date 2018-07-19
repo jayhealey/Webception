@@ -281,9 +281,10 @@ class Codeception
      *
      * @param  string $type     Test Type (Acceptance, Functional, Unit)
      * @param  string $filename Name of the Test
+     * @param  string $env      Array like [ --env=envname ] if required
      * @return string Full command to execute Codeception with requred parameters.
      */
-    public function getCommandPath($type, $filename, $env)
+    public function getCommandPath($type, $filename, $env = [])
     {
         // Build all the different parameters as part of the console command
         $params = array_merge(
