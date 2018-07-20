@@ -2,9 +2,10 @@ language: php
 sudo: false
 
 php:
-  - 5.3
-  - 5.4
-  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
 
 before_script:
   - sh -e /etc/init.d/xvfb start
@@ -21,4 +22,4 @@ before_script:
 
   - chmod a+x travis_dependencies.sh
   - ./travis_dependencies.sh
-script: "vendor/bin/codecept run unit"
+script: "vendor/bin/codecept run --skip-group=web-interface-only unit"
