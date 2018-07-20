@@ -98,7 +98,7 @@ class WebceptionClassTestsTest extends \Codeception\TestCase\Test
         // Confirm the item was added
         $log = $test->getLog(FALSE);
         $this->assertEquals($log[0], $log_line);
-        $this->assertEquals(sizeof($test->getLog()), 1);
+        $this->assertEquals(sizeof($test->getLog(FALSE)), 1);
         $this->assertTrue($test->ran());
 
         // Reset the test

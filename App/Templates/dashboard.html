@@ -40,23 +40,25 @@
 
                 <h4><strong>{{ type|capitalize }}</strong> Tests ({{ files|length }} available)</h4>
 
-                {% if attribute(environments, type)|length > 0 %}
+                {% if attribute(environments, type) is defined %}
+	                {% if attribute(environments, type)|length > 0 %}
 
-                <div>
-                    <h5><strong>Environments:</strong></h5>
+	                <div>
+	                    <h5><strong>Environments:</strong></h5>
 
-                    {% for env in attribute(environments, type) %}
+	                    {% for env in attribute(environments, type) %}
 
-                    <input type='checkbox' name='envs[]' id='{{ type }}_{{ env }}_envs' />
-                    <label for='{{ type }}_{{ env }}_envs'>
-                        <em>{{ env|capitalize }}</em>
-                    </label>
+	                    <input type='checkbox' name='envs[]' id='{{ type }}_{{ env }}_envs' />
+	                    <label for='{{ type }}_{{ env }}_envs'>
+	                        <em>{{ env|capitalize }}</em>
+	                    </label>
 
-                    {% endfor %}
+	                    {% endfor %}
 
-                    <hr>
-                </div>
+	                    <hr>
+	                </div>
 
+                	{% endif %}
                 {% endif %}
 
                 <div class='row'>

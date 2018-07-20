@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Webception package.
  *
@@ -9,13 +8,8 @@
  * file that was distributed with this source code.
  */
 
-// This test will be skipped when running Codeception from the terminal.
-
 // This test is used as a positive when testing Webception. This test is used
 // to test a failed test via the Webception RUN command.
-
-if (isset($_SERVER['TERM_PROGRAM']) || isset($_SERVER['TERM']))
-    $scenario->skip();
 
 $I = new WebGuy($scenario);
 $I->wantTo('do nothing and pass!');
