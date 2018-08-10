@@ -159,7 +159,8 @@ class Codeception
             foreach ($files as $file) {
 
                 if (! in_array($file->getFilename(), $this->config['ignore'])
-                   && $file->isFile())
+                   && $file->isFile()
+                   && preg_match('/Cept.php|Cest.php|Test.php/', $file->getFilename()))
                 {
                     // Declare a new test and add it to the list.
                     $test = new Test();
