@@ -123,7 +123,7 @@ class Codeception
                 if (! $active)
                     break;
 
-                if ($suite = \Symfony\Component\Yaml\Yaml::parse($config['paths']['tests'] . "/$type.suite.yml")) {
+                if ($suite = \Symfony\Component\Yaml\Yaml::parse(file_get_contents($config['paths']['tests'] . "/$type.suite.yml"))) {
                     if (isset($suite['env'])) {
                         $config['env'][$type] = array_keys($suite['env']);
                     }
@@ -162,10 +162,20 @@ class Codeception
                    && $file->isFile())
                 {
                     // Declare a new test and add it to the list.
-                    $test = new Test();
-                    $test->init($type, $file);
-                    $this->addTest($test);
-                    unset($test);
+                    if (preg_match('/Cest.php/', $file->getFilename())) {
+                        $tests = Test::getAllTests($file);
+                        foreach ($tests as $tcInfo) {
+                            $test = new Test();
+                            $test->cestInit($type, $file, $tcInfo);
+                            $this->addTest($test);
+                            unset($test);
+                        }
+                    } else {
+                        $test = new Test();
+                        $test->init($type, $file);
+                        $this->addTest($test);
+                        unset($test);
+                    }
                 }
 
             }
