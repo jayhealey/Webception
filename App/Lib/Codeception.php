@@ -147,7 +147,7 @@ class Codeception
             // If the test type has been disabled in the Webception config,
             //      skip processing the directory read for those tests.
             if (! $active)
-                break;
+                continue;
 
             $files = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator("{$this->config['paths']['tests']}".$this->config['DS']."{$type}".$this->config['DS'], \FilesystemIterator::SKIP_DOTS),
