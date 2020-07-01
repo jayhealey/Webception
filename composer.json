@@ -14,11 +14,11 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "slim/slim": "2.*",
-        "slim/views": "0.1.*",
-        "twig/twig": "~1.13",
-        "codeception/codeception": "2.*",
-        "symfony/yaml": "2.5.x-dev"
+        "slim/slim": "^4.0",
+        "slim/views": "^4.0",
+        "twig/twig": "^3.0",
+        "codeception/codeception": "^3.0",
+        "symfony/yaml": "^3.41"
     },
     "autoload": {
         "psr-0": {
